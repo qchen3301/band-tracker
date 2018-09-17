@@ -24,6 +24,16 @@ router.get('/:id', (req,res) => {
 //NEW RENDER NEW FORM
 
 //CREATE 
+router.post('/', (req, res) => {
+  //const newUser = req.body
+  //const newUser = new User(req.body) //create a new variable that stores the MODEL 
+  //newUser.save()
+  User.create(req.body) //create() method creates and saves to database
+    .then((banana)=> { //.then takes a function, that function takes what's...what now???
+      res.send(banana)
+    })
+})
+
 
 //EDIT, RENDER EDIT FORM
 
