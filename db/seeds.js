@@ -44,8 +44,12 @@ const daniel = new User ({
     bands:[nickle]
 })
 
-daniel.save()   //.save() is a method that saves (duh) the information to the (mongodb) database. However, the database will IMMEDIATELY respond to this request with a promise, 
-                //not an actual resolution.
+
+
+User.remove() //since this is just a test seed, we want to remove extraneous data from multiple database seeds. So first purge the data in the database before adding
+    .then(() => { //.save() is a method that saves (duh) the information to the (mongodb) database. However, the database will IMMEDIATELY respond to this request with a promise,not an actual resolution.
+      return daniel.save()  //return is important because a promissory action (such as .save) nested inside another promissory action (in this case .then) will not implicitly return data
+    })
     .then((data) => {   //.then() command = after the second act, the RESOLUTION, is returned, execute this function. Note: ((xxxyyyzzz) => {}) the parens around xxxyyyzzz are extraneous
         console.log(data)
         console.log('Done Seeding')
