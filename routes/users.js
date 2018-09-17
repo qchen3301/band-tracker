@@ -18,6 +18,16 @@ router.get('/new', (req,res) => {
   res.render('users/new')
 })
 
+
+//EDIT, RENDER EDIT FORM
+router.get('/:id/edit', (req,res) => {
+  User.findById(req.params.id) //promise of req.params.id
+  .then((user)=>{ //.then takes a function
+    res.render('users/edit', {user} )
+  }) 
+  
+})
+
 //SHOW, SHOW ONE
 router.get('/:id', (req,res) => {
   User.findById(req.params.id) //database responds, returns with a promise
@@ -40,9 +50,16 @@ router.post('/', (req, res) => {
 })
 
 
-//EDIT, RENDER EDIT FORM
 
 //UPDATE
+router.put('/:id', (req, res) => {
+  User.findByIdAndUpdate(req.params.id, req.body) //findByIdAndUpdate() method is mongoose-d
+    .then((user)=> { //.then takes a function, that function takes what's...what now???
+      res.redirect(`/users/${user._id}`) //user is the newly created user, its _id is its uniquely generated hash, which is the page we want to redirect to
+    })
+})
+
+
 
 //DELETE
 router.delete('/:id', (req,res) => {

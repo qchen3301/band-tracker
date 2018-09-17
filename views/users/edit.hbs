@@ -1,0 +1,7 @@
+<h1>Edit User</h1>
+
+<form action='/users/{{user._id}}?_method=PUT' method='POST'> 
+    <div>Username: <input type='text' name='username' value='{{user.username}}'></div> <!--put value attr in quotes-->
+    <div>City: <input type='text' name='city' value='{{user.city}}'></div>
+    <div><input type='submit' value='Update User'></div>    
+</form>
