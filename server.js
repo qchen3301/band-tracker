@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const mongoose = require('mongoose');
+const methodOverride = require('method-override')
 mongoose.connect('mongodb://localhost/band-tracer', { useNewUrlParser: true })
 var indexRouter = require('./routes');
 var usersRouter = require('./routes/users');
@@ -13,7 +14,7 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
-
+app.use(methodOverride('_method'));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
